@@ -2,7 +2,7 @@
   <div class="HomePage">
     <v-app class="app">
       <ComponentA />
-      <h1 class="text-center mt-3">This is HomePage</h1>
+      <h1 class="text-center black--text mt-3">This is HomePage</h1>
     </v-app>
   </div>
 </template>
@@ -18,7 +18,10 @@ export default {
 </script>
 
 <style>
-  .HomePage {
-     background: grey;
-  }
+.HomePage{
+  background-color: whitesmoke;
+}
+ #app{
+  background-color:whitesmoke;
+}
 </style>
