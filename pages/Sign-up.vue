@@ -62,6 +62,7 @@ import ComponentA from '../components/Navbar'
 
 
 export default {
+  name: 'signup',
   components: {
     ComponentA
   },
@@ -103,7 +104,7 @@ export default {
 </script>
 
 <style scoped>
-.app{
+#app{
   background-color:whitesmoke;
 }
   .myForm{
