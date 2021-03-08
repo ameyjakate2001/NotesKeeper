@@ -45,26 +45,29 @@ import ComponentA from '../components/Navbar'
 
 
 export default {
+  name: 'SignIn',
   components: {
     ComponentA
   },
-  data: () => ({
-    valid: false,
-    email: '',
-    password: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-    ],
-    passwordRule: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 5) || 'Password must have 5+ character',
-      v => /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
-      v => /(?=.*\d)/.test(v) || 'Must have one number',
-      v => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
-    ],
-    checkbox: false
-  }),
+  data () {
+    return {
+      valid: false,
+      email: '',
+      password: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ],
+      passwordRule: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 5) || 'Password must have 5+ character',
+        v => /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
+        v => /(?=.*\d)/.test(v) || 'Must have one number',
+        v => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
+      ],
+      checkbox: false
+    }
+  },
 
   methods: {
     submit () {
