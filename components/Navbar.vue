@@ -1,10 +1,10 @@
 <template>
   <nav>
     <v-app-bar flat>
-      <router-link :to="'/'">
-        <v-app-bar-title class="text-uppercase white--text">
+      <router-link :to="'/'" :style="{textDecoration: 'none'}">
+        <div class=" title text-uppercase white--text" :style="{width: 'auto'}">
           <span class="font-weight-light">NotesKeeper</span>
-        </v-app-bar-title>
+        </div>
       </router-link>
       <v-spacer />
       <v-btn :to="'/sign-up'" text color="light">
@@ -18,3 +18,9 @@
     </v-app-bar>
   </nav>
 </template>
+
+<style scoped>
+.v-app-bar-title__content {
+  width: auto !important;
+}
+</style>
