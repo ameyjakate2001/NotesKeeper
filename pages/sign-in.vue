@@ -1,7 +1,8 @@
 <template>
+
   <v-app class="app">
+    <ComponentA />
     <div>
-      <!-- <div class="form-width"> -->
 
       <v-form
         ref="form"
@@ -10,13 +11,14 @@
         class="myForm black pa-4"
         @submit.prevent="submit"
       >
+        <h2 class="my-2 display-2 deep-orange--text text-uppercase text-center">Sign In</h2>
 
         <v-text-field
           v-model="email"
           :rules="emailRules"
           label="E-mail"
           color="purple darken-2"
-          class="mt-3"
+          class="mt-4"
           required
         />
 
@@ -35,12 +37,17 @@
         </v-btn>
       </v-form>
     </div>
-    <!-- </div> -->
   </v-app>
 </template>
 
 <script>
+import ComponentA from '../components/Navbar'
+
+
 export default {
+  components: {
+    ComponentA
+  },
   data: () => ({
     valid: false,
     email: '',
@@ -80,9 +87,14 @@ export default {
     background-color: rgb(0, 0, 0);
       border-radius: 10px;
      max-width: 600px;
-     margin: 160px auto;
+     margin: 70px auto;
       box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.38);
       -webkit-box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.38);
       -moz-box-shadow: -1px 2px 5px 1px rgba(0,0,0,0.38);
+  }
+  @media screen and (max-width:600px) {
+    .myForm{
+      margin:70px 10px;
+    }
   }
 </style>
