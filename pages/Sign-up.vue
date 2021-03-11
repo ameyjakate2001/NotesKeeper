@@ -1,7 +1,6 @@
 <template>
   <v-app id="app">
     <ComponentA />
-
     <div>
       <v-form
         ref="form"
