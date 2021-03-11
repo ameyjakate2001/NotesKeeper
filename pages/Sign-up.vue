@@ -58,9 +58,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import ComponentA from '../components/Navbar.vue'
-import db from '../components/firebaseInit'
+import { db, auth } from '../fb/fb'
 
 export default {
   name: 'signup',
@@ -98,7 +97,7 @@ export default {
       }
       else {
         // e.preventDefault()
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((cred) => {
+        auth.createUserWithEmailAndPassword(this.email, this.password).then((cred) => {
           console.log(cred.user.uid)
           return db.collection('Student').doc(cred.user.uid).set({
             Student_Name: this.name,

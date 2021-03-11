@@ -15,7 +15,7 @@
         <span>Sign In</span>
         <v-icon right>mdi-login</v-icon>
       </v-btn>
-      <v-btn v-if="isLoged" text color="light" class="mx-2" @click="logout">
+      <v-btn v-if="isLogedIn" text color="light" class="mx-2" @click="logout">
         <span>Log Out</span>
         <v-icon right>mdi-login</v-icon>
       </v-btn>
@@ -24,22 +24,21 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import { auth } from '../fb/fb'
 export default {
   name: 'Navigation-Bar',
   data () {
     return {
-      isLogedIn: false
     }
   },
-  created () {
-    if (firebase.auth().currentUser) {
-      this.isLogedIn = true
+  computed: {
+    isLogedIn () {
+      return auth.currentUser
     }
   },
   methods: {
     logout: () => {
-      firebase.auth().signOut()
+      auth.signOut()
         .then(() => {
           alert('signOut Successfully as ')
         })

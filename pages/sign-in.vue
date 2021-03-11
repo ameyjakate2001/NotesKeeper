@@ -41,9 +41,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import ComponentA from '../components/Navbar.vue'
-
+import { auth } from '../fb/fb'
 
 export default {
   name: 'SignIn',
@@ -76,8 +75,7 @@ export default {
         alert('fill the correct info')
       }
       else {
-        firebase.auth()
-          .signInWithEmailAndPassword(this.email, this.password)
+        auth.signInWithEmailAndPassword(this.email, this.password)
           .then(
             (user) => {
               alert(`You are logged in as ${user.email} `)
