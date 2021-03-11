@@ -58,8 +58,9 @@
 </template>
 
 <script>
-import ComponentA from '../components/Navbar'
-
+import firebase from 'firebase'
+import ComponentA from '../components/Navbar.vue'
+import db from '../components/firebaseInit'
 
 export default {
   name: 'signup',
@@ -91,12 +92,25 @@ export default {
     }
   },
   methods: {
-    submit () {
+    submit (e) {
       if (!this.$refs.form.validate()) {
         alert('fill the correct info')
       }
       else {
-        alert(this.name + ' ' + this.email + ' ' + this.password)
+        // e.preventDefault()
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((cred) => {
+          console.log(cred.user.uid)
+          return db.collection('Student').doc(cred.user.uid).set({
+            Student_Name: this.name,
+            Student_Email: this.email
+          })
+            .then(() => {
+              alert('User Created Successfully')
+            })
+        })
+          .catch((error) => {
+            alert('The User already Exists Please try another with another emailID:- ' + error.message)
+          })
       }
     }
   }

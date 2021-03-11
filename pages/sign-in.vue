@@ -41,7 +41,8 @@
 </template>
 
 <script>
-import ComponentA from '../components/Navbar'
+import firebase from 'firebase'
+import ComponentA from '../components/Navbar.vue'
 
 
 export default {
@@ -75,7 +76,16 @@ export default {
         alert('fill the correct info')
       }
       else {
-        alert(' ' + this.email + ' ' + this.password)
+        firebase.auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(
+            (user) => {
+              alert(`You are logged in as ${user.email} `)
+            },
+            (err) => {
+              alert(err.message)
+            }
+          )
       }
     }
   }

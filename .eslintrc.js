@@ -19,7 +19,8 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 2, maxEOF: 0 }],
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
-    'brace-style': [2, 'stroustrup', { 'allowSingleLine': true }],
-    'jsx-quotes': [2, 'prefer-double']
+    'brace-style': [2, 'stroustrup', { allowSingleLine: true }],
+    'jsx-quotes': [2, 'prefer-double'],
+    'no-console': 'off'
   }
 }
