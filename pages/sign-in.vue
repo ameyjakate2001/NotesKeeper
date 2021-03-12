@@ -76,14 +76,14 @@ export default {
       }
       else {
         auth.signInWithEmailAndPassword(this.email, this.password)
-          .then(
-            (user) => {
-              alert(`You are logged in as ${user.email} `)
-            },
-            (err) => {
-              alert(err.message)
-            }
-          )
+          .then((userCredential) => {
+            alert(`logged in as ${userCredential.user.email}`)
+          })
+          .catch((error) => {
+            // var errorCode = error.code
+            // var errorMessage = error.message
+            alert(error.message)
+          })
       }
     }
   }
