@@ -1,6 +1,7 @@
 <template>
   <v-app id="app">
     <ComponentA />
+
     <div>
       <v-form
         ref="form"
@@ -103,7 +104,8 @@ export default {
             Student_Email: this.email
           })
             .then(() => {
-              alert('User Created Successfully')
+              alert('user created successfully')
+              this.$router.push('/')
             })
         })
           .catch((error) => {

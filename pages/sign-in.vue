@@ -78,6 +78,7 @@ export default {
         auth.signInWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
             alert(`logged in as ${userCredential.user.email}`)
+            this.$router.push('/')
           })
           .catch((error) => {
             // var errorCode = error.code
