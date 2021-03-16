@@ -11,6 +11,20 @@
         </div>
       </router-link>
       <v-spacer />
+      <v-tooltip v-if="isLoggedIn" bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-icon
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            mdi-account
+          </v-icon>
+        </template>
+        <span class="yellow--text">{{ email }}</span>
+      </v-tooltip>
+
       <v-btn
         v-if="!isLoggedIn"
         :to="'/sign-up'"
@@ -39,8 +53,27 @@
     <v-navigation-drawer
       v-model="sidebarMenu"
       app
+      dark
+      absolute
       temporary
+      class="cyan darken-1"
     >
+      <v-container>
+        <v-row>
+          <v-col cols="12" class="text-center">
+            <v-avatar
+              size="100"
+            >
+              <img src="../assets/avatar-4.png" alt="">
+            </v-avatar>
+          </v-col>
+          <v-col class="text-center pt-0">
+            <p class="font-weight-medium black--text">
+              {{ title }}
+            </p>
+          </v-col>
+        </v-row>
+      </v-container>
       <v-list>
         <v-list-item v-for="item in links" :key="item.title" @click="item.method">
           <v-list-item-icon>
@@ -61,6 +94,8 @@ export default {
   name: 'Navigation-Bar',
   data () {
     return {
+      title: '',
+      email: '',
       isLoggedIn: 'false',
       sidebarMenu: false,
       toggleMini: false,
@@ -75,9 +110,15 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true
+        const user = auth.currentUser
+        db.collection('Student').doc(user.uid).get().then((res) => {
+          this.title = res.data().Student_Name
+          this.email = res.data().Student_Email
+        })
       }
       else {
         this.isLoggedIn = false
+        this.title = 'No User'
       }
     })
   },
