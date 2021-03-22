@@ -14,7 +14,7 @@
       <v-tooltip v-if="isLoggedIn" bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-icon
-            color="primary"
+            color="white"
             dark
             v-bind="attrs"
             v-on="on"
@@ -50,6 +50,8 @@
         <v-icon right>mdi-login</v-icon>
       </v-btn>
     </v-app-bar>
+
+
     <v-navigation-drawer
       v-model="sidebarMenu"
       app
@@ -62,15 +64,18 @@
         <v-row>
           <v-col cols="12" class="text-center">
             <v-avatar
+              class="avatar"
               size="100"
             >
               <img src="../assets/avatar-4.png" alt="">
             </v-avatar>
+            <div v-if="isLoggedIn" class="upload-btn-wrapper">
+              <button class="btn black--text">Upload a file</button>
+              <input type="file" name="myfile">
+            </div>
           </v-col>
           <v-col class="text-center pt-0">
-            <p class="font-weight-medium black--text">
-              {{ title }}
-            </p>
+            <h2 class="darken-2 purple--text">{{ title }}</h2>
           </v-col>
         </v-row>
       </v-container>
@@ -139,5 +144,35 @@ export default {
 <style scoped>
 .v-app-bar-title__content {
   width: auto !important;
+}
+.avatar{
+  position: relative;
+}
+.icon {
+  position: relative;
+  bottom: -30px;
+  right: 30px;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.btn {
+  border: none;
+  color: rgb(255, 251, 251);
+  /* background-color: white; */
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.upload-btn-wrapper input[type=file] {
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 </style>
